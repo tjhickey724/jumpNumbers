@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Math demo</title>
+		<style>
+			body { margin: 0;}
+		</style>
+	</head>
+	<body>
+		<h1 id="title">Math Demo v2</h1>
+    This calculates the sequence of polynomials mod p defined by
+    <pre>
+      a[n+k] = REDUCE(sum_{j=0}^{j=k-1} c[j]*a[n+j])
+    </pre>
+    where the REDUCE operator subtracts multiples of the previous a[j]
+    to decrease the degree of the polynomial as much as possible.
+    If it reduces to the zero polynomial, then n+k is called a jump number
+    and is printed to the Jump textarea
+    <hr>
+<h2> Usage</h2>
+    <ul>
+      <li>
+    Enter polynomials as lists of coefficients, e.g. t+7t^3 would be<br>
+    0+1t+0t^2+7t^3 and hence represented as [0,1,0,7] and 0 is represented as [0].
+  </li>
+  <li> Press the Load Recurrence button </li>
+  <li> Press the Generate N More Values button, one or more times</li>
+</ul>
+
+
+    base: p=<input type="text" id="b" value="3"><br>
+    coefficients: c[j]<br>
+    <textarea id="cs" rows=5 cols=40>
+      [[0,0,0,2],[0,1,1],[0,1]]
+
+    </textarea><br>
+    initial sequence values: a[n]<br>
+<textarea id="as" rows=5 cols=40>
+    [[0],[0,2],[0,1]]
+</textarea><br>
+Other examples
+<textarea>
+  Example 1: base 2
+[][0,0,0,0,1],[0,1],[0],[0]]
+[][[0],[0],[0],[0,1]]
+
+  Example 2: base 3
+[[0,0,0,2],[0,1,1],[0,1]]
+[[0],[0,2],[0,1]]
+
+</textarea>
+
+<hr><br>
+Jump Sequence:
+<div id="jump" style="word-wrap:break-word"></div>
+<hr>
+N:<input type="text" id="n" value="10"><br>
+    <hr>
+    <button is="Load Recurrence" onclick='go()' style="font-size:24pt; color:red">
+      Load Recurrence</button>
+      <button onclick='r.runMore()' style="font-size:24pt; color:red" >Generate N More Values</button>
+
+
+    <br>
+    <hr>
+    <pre id="init"></pre>
+
+
+
+
+
+
+    <br><br>
+    <hr>
+<pre id="info"></pre>
+
+		<script src="polys.js"></script>
+
+  </body>
+</html>
